@@ -448,7 +448,7 @@
         <div class="ft-content text-center">
             <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5>
             <p class="text-16 text-white mb-0">
-                {{$business?->business_name}}  {{$business?->business_address}}
+                 {{$business?->business_address}} {{$business?->location_name}}
             </p>
             <p class="text-16 text-white mb-0">Copyright 2025, all rights reserved.</p>
 
