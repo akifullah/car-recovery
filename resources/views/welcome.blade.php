@@ -17,7 +17,7 @@
 @section('main')
     <!-- HERO SECTION START -->
     <div class="hero-section width-fixed">
-        <div class="row align-items-center">
+        <div class="row flex-row-reverse flex-md-row align-items-center">
             <!-- TEXT  -->
             <div class="col-md-6 order-1 order-md-0">
                 <h4 class="text-32 highlight-text">24 Hours</h4>
@@ -442,8 +442,9 @@
     <!-- FOOTER SECTION START -->
     <div class="footer-section">
         <div class="ft-content text-center">
-            <h5 class="text-16 text-white fw-bold">INSTANT TYRE SOLUTIONS LTD</h5>
-            <p class="text-16 text-white mb-0">Unit 3 Hollingworth Rd, Bredbury, Stockport SK6 2AR, United Kingdom
+            <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5>
+            <p class="text-16 text-white mb-0">
+                {{$business?->business_address}}
             </p>
             <p class="text-16 text-white mb-0">Copyright 2025, all rights reserved.</p>
 
@@ -453,11 +454,6 @@
                     <a href="#" class="text-20 highlight-text">About</a> -->
             </div>
 
-            <div class="links d-flex justify-content-center text-uppercase">
-                <a href="#" class="text-14 text-white">Privacy Policy</a>
-                <span class="text-white px-1">-</span>
-                <a href="#" class="text-14 text-white">Terms & Conditions</a>
-            </div>
 
         </div>
     </div>
