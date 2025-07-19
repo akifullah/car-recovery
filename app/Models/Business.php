@@ -11,5 +11,6 @@ class Business extends Model
         'phone_number',
         'business_name',
         'business_address',
+        'image',
     ];
 }

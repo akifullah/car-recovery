@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Business;
+use App\Models\Button;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -45,18 +47,60 @@ class AdminController extends Controller
             'location_name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:255',
             'business_name' => 'required|string|max:255',
-            'business_address' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
-        // Update the first business if exists, otherwise create new
         $business = Business::first();
+        $data = $request->only(['location_name', 'phone_number', 'business_name', 'business_address']);
+
+        if ($request->hasFile('image')) {
+            // Store the image in the public/business directory
+            $path = $request->file('image')->store('business', 'public');
+
+            // Extract only the filename for DB (relative to 'business/')
+            $data['image'] = basename($path);
+
+            // Delete old image if exists
+            if (!empty($business?->image)) {
+                Storage::disk('public')->delete('business/' . $business->image);
+            }
+        }
+
         if ($business) {
-            $business->update($request->only(['location_name', 'phone_number', 'business_name', 'business_address']));
+            $business->update($data);
             $message = 'Business updated successfully!';
         } else {
-            Business::create($request->only(['location_name', 'phone_number', 'business_name', 'business_address']));
+            Business::create($data);
             $message = 'Business added successfully!';
         }
         return back()->with('success', $message);
+    }
+
+    public function listButtons(Request $request)
+    {
+        $buttons = Button::all();
+        return view('admin_buttons', compact('buttons'));
+    }
+
+    public function storeButton(Request $request)
+    {
+        $request->validate([
+            'text' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
+            'target' => 'required|string|max:20',
+        ]);
+        Button::create($request->only(['text', 'url', 'target']));
+        return redirect()->back()->with('success', 'Button added!');
+    }
+
+    public function updateButton(Request $request, Button $button)
+    {
+        $request->validate([
+            'text' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
+            'target' => 'required|string|max:20',
+        ]);
+        $button->update($request->only(['text', 'url', 'target']));
+        return redirect()->back()->with('success', 'Button updated!');
     }
 }

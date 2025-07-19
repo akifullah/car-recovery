@@ -36,6 +36,13 @@ Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.logi
 
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+// Button management routes (admin)
+Route::middleware('admin')->group(function () {
+    Route::get('/admin/buttons', [AdminController::class, 'listButtons'])->name('admin.buttons.list');
+    Route::post('/admin/buttons', [AdminController::class, 'storeButton'])->name('admin.buttons.store');
+    Route::post('/admin/buttons/{button}', [AdminController::class, 'updateButton'])->name('admin.buttons.update');
+});
+
 // Business management routes (protected)
 Route::middleware('admin')->group(function () {
     Route::get('/admin/business/create', [AdminController::class, 'createBusinessForm'])->name('admin.business.create.form');

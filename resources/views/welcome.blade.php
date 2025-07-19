@@ -103,7 +103,11 @@
             <div class="col-md-6 order-0">
                 <div class="hero-img">
                     <div class="bg-shade"></div>
-                    <img src="{{ asset('assets/imgs/towing.webp') }}" width="100%" alt="">
+                    @if(isset($business) && $business?->image)
+                        <img src="{{ asset('storage/business/' . $business?->image) }}" width="100%" alt="Business Image">
+                    @else
+                        <img src="{{ asset('assets/imgs/towing.webp') }}" width="100%" alt="">
+                    @endif
                 </div>
             </div>
 
@@ -444,7 +448,7 @@
         <div class="ft-content text-center">
             <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5>
             <p class="text-16 text-white mb-0">
-                {{$business?->business_address}}
+                {{$business?->business_name}}  {{$business?->business_address}}
             </p>
             <p class="text-16 text-white mb-0">Copyright 2025, all rights reserved.</p>
 
