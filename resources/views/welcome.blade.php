@@ -449,7 +449,7 @@
     <div class="footer-section">
         <div class="ft-content text-center">
             {{-- <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5> --}}
-            <p class="text-16 text-white mb-0">
+            <p class="text-16 text-h text-white mb-0">
                  {{$business?->business_name}} {{$location?->location_name}}
             </p>
             <p class="text-16 text-white mb-0">Copyright {{ date('Y') }}, all rights reserved.</p>

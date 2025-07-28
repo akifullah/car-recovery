@@ -25,8 +25,8 @@
             bottom: 20px;
             right: 20px;
             z-index: 999;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background-color: #25d366;
             border-radius: 50%;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -41,8 +41,21 @@
         }
 
         .whatsapp-button img {
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
+        }
+        .whatsapp-button  h5{
+            font-size: 20px;
+            position: absolute;
+            right: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            color: #000000;
+            background: #fff;
+            box-shadow:  0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 4px 8px;
+            border-radius: 5px;
         }
     </style>
 
@@ -52,9 +65,14 @@
 
     <!-- WhatsApp Button -->
     @if ($business->whatsapp)
-        <a href="https://wa.me/{{$business->whatsapp}}" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
-            <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" />
-        </a>
+        <div class="d-flex align-items-center gap-2">
+            <a href="https://api.whatsapp.com/send?phone={{ $business->whatsapp }}&text=Need+Help%3F"
+                class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
+                <h5>Need Help?</h5>
+
+                <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp" />
+            </a>
+        </div>
     @endif
 
     <div class="wrapper position-relative ">
@@ -64,7 +82,24 @@
 
 
     </div>
-
+    <script type='text/javascript'>
+        window.smartlook || (function(d) {
+            var o = smartlook = function() {
+                    o.api.push(arguments)
+                },
+                h = d.getElementsByTagName('head')[0];
+            var c = d.createElement('script');
+            o.api = new Array();
+            c.async = true;
+            c.type = 'text/javascript';
+            c.charset = 'utf-8';
+            c.src = 'https://web-sdk.smartlook.com/recorder.js';
+            h.appendChild(c);
+        })(document);
+        smartlook('init', '43adb320c41f63674d5523146230b9b5c319c691', {
+            region: 'eu'
+        });
+    </script>
 </body>
 
 </html>

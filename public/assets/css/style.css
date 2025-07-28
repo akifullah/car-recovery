@@ -596,6 +596,10 @@ body {
      padding: 40px 10px;
      margin-top: 50px;
 }
+.footer-section p.text-h{
+     font-weight: 500;
+     line-height: 1.6;
+}
 
 .footer-section .links a {
      text-decoration: none;
