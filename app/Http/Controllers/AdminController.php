@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Business;
 use App\Models\Button;
+use App\Models\Page;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -38,7 +39,8 @@ class AdminController extends Controller
     public function createBusinessForm(Request $request)
     {
         $business = \App\Models\Business::first();
-        return view('admin_business_form', compact('business'));
+        $pages = Page::get();
+        return view('admin_business_form', compact('business', "pages"));
     }
 
     public function storeBusiness(Request $request)
