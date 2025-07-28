@@ -41,6 +41,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/buttons', [AdminController::class, 'listButtons'])->name('admin.buttons.list');
     Route::post('/admin/buttons', [AdminController::class, 'storeButton'])->name('admin.buttons.store');
     Route::post('/admin/buttons/{button}', [AdminController::class, 'updateButton'])->name('admin.buttons.update');
+    Route::delete('/admin/buttons/{button}', [AdminController::class, 'deleteButton'])->name('admin.buttons.delete');
 });
 
 // Business management routes (protected)

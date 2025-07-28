@@ -103,4 +103,10 @@ class AdminController extends Controller
         $button->update($request->only(['text', 'url', 'target']));
         return redirect()->back()->with('success', 'Button updated!');
     }
+
+    public function deleteButton(Button $button)
+    {
+        $button->delete();
+        return redirect()->back()->with('success', 'Button deleted!');
+    }
 }

@@ -135,8 +135,15 @@
                                                     Tab</option>
                                             </select>
                                         </td>
-                                        <td><button type="submit" class="btn btn-success btn-sm">Update</button></td>
+                                        <td class="d-flex gap-1">
+                                            <button type="submit" class="btn btn-success btn-sm">Update</button>
                                     </form>
+                                    <form method="POST" action="{{ route('admin.buttons.delete', $button) }}" onsubmit="return confirm('Delete this button?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                        </td>
                                 </tr>
                             @endforeach
                         </tbody>

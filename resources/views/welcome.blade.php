@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section("title", $business?->business_name);
+
 <!-- HEADER SECTION START -->
 <header class="header-section  d-md-none">
     <div class="d-flex align-items-center justify-content-center flex-column">
@@ -10,7 +12,7 @@
             <p class="m-0 text-22 pnum">{{ $mobile }}</p>
             <small class="text-14">24/7 Service - Call Now</small>
         </a>
-        <p class="text-16 mb-0 para">ETA From 20 mins in {{ $location->location_name }}</p>
+        <p class="text-16 mb-0 para">ETA From 20 mins in {{ $location?->location_name }}</p>
     </div>
 </header>
 <!-- HEADER SECTION END -->
@@ -171,7 +173,7 @@
                     <p class="m-0 text-22 pnum">{{ $mobile }}</p>
                     <small class="text-14">24/7 Service - Call Now</small>
                 </a>
-                <p class="text-16 text-center">Arrive from 20 mins</p>
+                <p class="text-16 text-center mb-0">ETA - From 20 mins in {{ $location->location_name }}</p>
             </div>
 
         </div>
@@ -431,7 +433,7 @@
                             <p class="m-0 text-22 pnum">{{ $mobile }}</p>
                             <small class="text-14">24/7 Service - Call Now</small>
                         </a>
-                        <p class="text-16 text-center  mb-0">Arrive from 20 mins</p>
+                        <p class="text-16 text-center mb-0">ETA - From 20 mins in {{ $location->location_name }}</p>
                     </div>
 
                 </div>
@@ -446,11 +448,11 @@
     <!-- FOOTER SECTION START -->
     <div class="footer-section">
         <div class="ft-content text-center">
-            <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5>
+            {{-- <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5> --}}
             <p class="text-16 text-white mb-0">
                  {{$business?->business_address}} {{$business?->location_name}}
             </p>
-            <p class="text-16 text-white mb-0">Copyright 2025, all rights reserved.</p>
+            <p class="text-16 text-white mb-0">Copyright {{ date('Y') }}, all rights reserved.</p>
 
             <div class="links d-flex justify-content-center text-uppercase py-2">
                 <!--  <a href="#" class="text-20 highlight-text">Home</a>
