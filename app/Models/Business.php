@@ -12,5 +12,6 @@ class Business extends Model
         'business_name',
         'business_address',
         'image',
+        'whatsapp'
     ];
 }

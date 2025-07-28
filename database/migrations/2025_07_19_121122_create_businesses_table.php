@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('phone_number');
             $table->string('business_name');
             $table->string('business_address')->nullable();
+            $table->string('image')->nullable();
+            $table->string('whatsapp')->nullable();
             $table->timestamps();
         });
     }

@@ -44,6 +44,13 @@
                                         </div>
                                     @endif
                                 </div>
+
+                                <div class="col-md-3 align-self-start pt-2">
+                                    <label for="whatsapp" class="form-label">WhatsApp Number</label>
+                                    <input type="text" class="form-control" id="whatsapp" name="whatsapp"
+                                        value="{{ old('whatsapp', $business->whatsapp ?? '') }}" placeholder="e.g. +923001234567">
+                                </div>
+
                                 <div class="col-md-12 mt-3 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-success w-auto px-5">
                                         @if (isset($business) && $business)

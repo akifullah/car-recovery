@@ -49,12 +49,11 @@ class AdminController extends Controller
             'location_name' => 'required|string|max:255',
             'phone_number' => 'required|string|max:255',
             'business_name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
         ]);
 
         $business = Business::first();
-        $data = $request->only(['location_name', 'phone_number', 'business_name', 'business_address']);
-
+        $data = $request->only(['location_name', 'phone_number', 'business_name', 'business_address', 'whatsapp' ]);
         if ($request->hasFile('image')) {
             // Store the image in the public/business directory
             $path = $request->file('image')->store('business', 'public');
