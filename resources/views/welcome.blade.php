@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section("title", $business?->business_name);
+@section("title", $business?->business_name)
 
 <!-- HEADER SECTION START -->
 <header class="header-section  d-md-none">
@@ -450,7 +450,7 @@
         <div class="ft-content text-center">
             {{-- <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5> --}}
             <p class="text-16 text-white mb-0">
-                 {{$business?->business_address}} {{$business?->location_name}}
+                 {{$business?->business_name}} {{$business?->location_name}}
             </p>
             <p class="text-16 text-white mb-0">Copyright {{ date('Y') }}, all rights reserved.</p>
 

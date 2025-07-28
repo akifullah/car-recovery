@@ -21,6 +21,8 @@ Route::get('/{url?}', function (\Illuminate\Http\Request $request, $url = null )
         $page = Page::where('url', $url)->first();
         if ($page) {
             $location = (object)['location_name' => $page?->location_name];
+        }else{
+            abort(404);
         }
     }
 
