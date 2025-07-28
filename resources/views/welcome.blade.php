@@ -450,7 +450,7 @@
         <div class="ft-content text-center">
             {{-- <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5> --}}
             <p class="text-16 text-white mb-0">
-                 {{$business?->business_name}} {{$business?->location_name}}
+                 {{$business?->business_name}} {{$location?->location_name}}
             </p>
             <p class="text-16 text-white mb-0">Copyright {{ date('Y') }}, all rights reserved.</p>
 
