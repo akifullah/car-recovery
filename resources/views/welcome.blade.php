@@ -5,7 +5,7 @@
 <!-- HEADER SECTION START -->
 <header class="header-section  d-md-none">
     <div class="d-flex align-items-center justify-content-center flex-column">
-        <a href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link header-btn mx-auto mx-md-0 text-start">
+        <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link header-btn mx-auto mx-md-0 text-start">
             <div class="icon">
                 <i class="fa-solid fa-phone"></i>
             </div>
@@ -94,7 +94,7 @@
                 </ul>
 
                 <div class="mt-4 pt-2">
-                    <a href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto mx-md-0">
+                    <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto mx-md-0">
                         <p class="m-0 text-22 pnum">{{ $mobile }}</p>
                         <small class="text-14">24/7 Service - Call Now</small>
                     </a>
@@ -169,7 +169,7 @@
             </div>
 
             <div class="mt-4 pt-2">
-                <a href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto">
+                <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto">
                     <p class="m-0 text-22 pnum">{{ $mobile }}</p>
                     <small class="text-14">24/7 Service - Call Now</small>
                 </a>
@@ -188,7 +188,7 @@
             </h2>
 
             <div class="mt-4 pt-2">
-                <a href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto">
+                <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto">
                     <p class="m-0 text-22 pnum">{{ $mobile }}</p>
                     <small class="text-14">24/7 Service - Call Now</small>
                 </a>
@@ -429,7 +429,7 @@
                     </div>
 
                     <div class="mt-4 pt-2">
-                        <a href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto">
+                        <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto">
                             <p class="m-0 text-22 pnum">{{ $mobile }}</p>
                             <small class="text-14">24/7 Service - Call Now</small>
                         </a>

@@ -41,14 +41,14 @@
             <h1 class="display-4 mb-2 fw-semibold ">Mobile Tyre Fitting</h1>
             <h4 class="mb-4">24/7 Mobile Tyres Fitting</h4>
             <div class="mb-3 pt-2 text-center d-flex justify-content-center">
-                <a href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto mx-md-0">
+                <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link mx-auto mx-md-0">
                     <p class="m-0 text-22 pnum">{{ $mobile }}</p>
                     <small class="text-14">24/7 Service - Call Now</small>
                 </a>
             </div>
             <div class="d-flex gap-2 justify-content-center btn-group-custom mb-2 flex-wrap">
                 @foreach ($buttons as $btn)
-                    <a href="{{ $btn->url }}" target="{{ $btn->target }}"
+                    <a  href="{{ $btn->url }}" target="{{ $btn->target }}"
                         class="btn btn-primary btn-md-lg mb-2">{{ $btn->text }}</a>
                 @endforeach
             </div>

@@ -66,7 +66,7 @@
     <!-- WhatsApp Button -->
     @if ($business->whatsapp)
         <div class="d-flex align-items-center gap-2">
-            <a href="https://api.whatsapp.com/send?phone={{ $business->whatsapp }}&text=Need+Help%3F"
+            <a  href="https://api.whatsapp.com/send?phone={{ $business->whatsapp }}&text=Need+Help%3F"
                 class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
                 <h5>Need Help?</h5>
 
