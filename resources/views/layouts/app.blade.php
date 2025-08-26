@@ -18,7 +18,7 @@
     <!-- CUSTOM CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+    @yield('css');
     <style>
         .whatsapp-button {
             position: fixed;
@@ -82,6 +82,7 @@
 
 
     </div>
+    @yield("js");
     <script type='text/javascript'>
         window.smartlook || (function(d) {
             var o = smartlook = function() {

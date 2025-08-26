@@ -80,7 +80,7 @@ class AdminController extends Controller
     public function listButtons(Request $request)
     {
         $buttons = Button::all();
-        return view('admin_buttons', compact('buttons'));
+        return view('buttons', compact('buttons'));
     }
 
     public function storeButton(Request $request)
@@ -91,7 +91,7 @@ class AdminController extends Controller
             'target' => 'required|string|max:20',
         ]);
         Button::create($request->only(['text', 'url', 'target']));
-        return redirect()->back()->with('success', 'Button added!');
+        return redirect()->route("admin.buttons.list")->with('success', 'Button added!');
     }
 
     public function updateButton(Request $request, Button $button)

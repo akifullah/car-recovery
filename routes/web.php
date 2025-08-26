@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ScriptController;
 use App\Models\Location;
 use App\Models\Page;
 
-Route::get('/{url?}', function (\Illuminate\Http\Request $request, $url = null ) {
+Route::get('/{url?}', function (\Illuminate\Http\Request $request, $url = null) {
     $business = \App\Models\Business::first();
     $location = (object)['location_name' => $business?->location_name];
     $kwd = $request->query('kwd', 'Mobile Tyre Fitting');
@@ -21,7 +22,7 @@ Route::get('/{url?}', function (\Illuminate\Http\Request $request, $url = null )
         $page = Page::where('url', $url)->first();
         if ($page) {
             $location = (object)['location_name' => $page?->location_name];
-        }else{
+        } else {
             abort(404);
         }
     }
@@ -59,4 +60,7 @@ Route::middleware('admin')->group(function () {
 
     Route::post('/admin/pages', [PageController::class, 'store'])->name('admin.pages.store');
     Route::delete('/admin/pages/{page}', [PageController::class, 'destroy'])->name('admin.pages.destroy');
+
+
+    Route::resource('/admin/scripts', ScriptController::class);
 });
