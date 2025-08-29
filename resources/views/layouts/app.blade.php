@@ -18,7 +18,21 @@
     <!-- CUSTOM CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    @yield('css');
+
+    {{-- Insert dynamic scripts for head position --}}
+    @php
+        // Also retrieve scripts for the entire website for head and body positions
+        $entireWebsiteHeadScripts = \App\Models\Script::where('scope', 'entire_website')
+            ->where('position', 'head')
+            ->get();
+    @endphp
+
+    @if(isset($entireWebsiteHeadScripts))
+        @foreach($entireWebsiteHeadScripts as $script)
+            {!! $script->code !!}
+        @endforeach
+    @endif
+    
     <style>
         .whatsapp-button {
             position: fixed;
@@ -58,6 +72,8 @@
             border-radius: 5px;
         }
     </style>
+    @yield('css')
+
 
 </head>
 
@@ -65,7 +81,7 @@
 
     <!-- WhatsApp Button -->
     @if ($business->whatsapp)
-        <div class="d-flex align-items-center gap-2">
+        <div id="wa" class="d-flex align-items-center gap-2">
             <a  href="https://api.whatsapp.com/send?phone={{ $business->whatsapp }}&text=Need+Help%3F"
                 class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
                 <h5>Need Help?</h5>
@@ -82,7 +98,21 @@
 
 
     </div>
-    @yield("js");
+
+    @php
+        $entireWebsiteBodyScripts = \App\Models\Script::where('scope', 'entire_website')
+            ->where('position', 'body')
+            ->get();
+    @endphp
+
+    @if(isset($entireWebsiteBodyScripts) && $entireWebsiteBodyScripts->count())
+        @foreach($entireWebsiteBodyScripts as $script)
+            {!! $script->code !!}
+        @endforeach
+    @endif
+    
+    
+    @yield("js")
     <script type='text/javascript'>
         window.smartlook || (function(d) {
             var o = smartlook = function() {

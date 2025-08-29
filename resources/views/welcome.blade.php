@@ -1,22 +1,41 @@
 @extends('layouts.app')
 
-@section("title", $business?->business_name)
+@section('title', $business?->business_name)
 
-<!-- HEADER SECTION START -->
-<header class="header-section  d-md-none">
-    <div class="d-flex align-items-center justify-content-center flex-column">
-        <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}" class="btn-link header-btn mx-auto mx-md-0 text-start">
-            <div class="icon">
-                <i class="fa-solid fa-phone"></i>
-            </div>
-            <p class="m-0 text-22 pnum">{{ $mobile }}</p>
-            <small class="text-14">24/7 Service - Call Now</small>
-        </a>
-        <p class="text-16 mb-0 para">ETA From 20 mins in {{ $location?->location_name }}</p>
-    </div>
-</header>
-<!-- HEADER SECTION END -->
+@section('css')
+    @php
+        // Fetch head scripts for this page
+        $url = request()->path();
+        $headScripts = \App\Models\Script::where('scope', 'single_page')
+            ->where('position', 'head')
+            ->where('page', 'like', '%"' . $url . '"%')
+            ->get();
+    @endphp
+
+    @if ($headScripts->count())
+        @foreach ($headScripts as $script)
+            {!! $script->code !!}
+        @endforeach
+    @endif
+
+@endsection
+
 @section('main')
+    <!-- HEADER SECTION START -->
+    <header class="header-section  d-md-none">
+        <div class="d-flex align-items-center justify-content-center flex-column">
+            <a id="callnow" href="tel:{{ str_replace(' ', '', $mobile) }}"
+                class="btn-link header-btn mx-auto mx-md-0 text-start">
+                <div class="icon">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <p class="m-0 text-22 pnum">{{ $mobile }}</p>
+                <small class="text-14">24/7 Service - Call Now</small>
+            </a>
+            <p class="text-16 mb-0 para">ETA From 20 mins in {{ $location?->location_name }}</p>
+        </div>
+    </header>
+    <!-- HEADER SECTION END -->
     <!-- HERO SECTION START -->
     <div class="hero-section width-fixed">
         <div class="row flex-row-reverse flex-md-row align-items-center">
@@ -105,7 +124,7 @@
             <div class="col-md-6 order-0">
                 <div class="hero-img">
                     <div class="bg-shade"></div>
-                    @if(isset($business) && $business?->image)
+                    @if (isset($business) && $business?->image)
                         <img src="{{ asset('storage/business/' . $business?->image) }}" width="100%" alt="Business Image">
                     @else
                         <img src="{{ asset('assets/imgs/towing.webp') }}" width="100%" alt="">
@@ -183,7 +202,7 @@
     <!-- SERVICES SECTION START -->
     <section class="service-section">
         <div class="width-fixed px-md-5">
-            <h2 class="text-60 highlight-text text-center">{{ $kwd }} Service <br /> in <span
+            <h2 class="text-60 highlight-text text-center"><span style="text-transform: capitalize">{{ $kwd }}</span> <br /> in <span
                     class="text-white">{{ $location->location_name }}</span> & <span class="text-white">Outskirts</span>
             </h2>
 
@@ -450,18 +469,35 @@
         <div class="ft-content text-center">
             {{-- <h5 class="text-16 text-white fw-bold">{{$business?->business_name}}</h5> --}}
             <p class="text-16 text-h text-white mb-0">
-                 {{$business?->business_name}} {{$location?->location_name}}
+                {{ $business?->business_name }} {{ $location?->location_name }}
             </p>
             <p class="text-16 text-white mb-0">Copyright {{ date('Y') }}, all rights reserved.</p>
 
             <div class="links d-flex justify-content-center text-uppercase py-2">
                 <!--  <a href="#" class="text-20 highlight-text">Home</a>
-                    <span class="text-white px-1">-</span>
-                    <a href="#" class="text-20 highlight-text">About</a> -->
+                                            <span class="text-white px-1">-</span>
+                                            <a href="#" class="text-20 highlight-text">About</a> -->
             </div>
 
 
         </div>
     </div>
     <!-- FOOTER SECTION END -->
+@endsection
+
+@section('js')
+    @php
+        // Fetch body scripts for this page
+        $url = request()->path();
+        $bodyScripts = \App\Models\Script::where('scope', 'single_page')
+            ->where('position', 'body')
+            ->where('page', 'like', '%"' . $url . '"%')
+            ->get();
+    @endphp
+
+    @if ($bodyScripts->count())
+        @foreach ($bodyScripts as $script)
+            {!! $script->code !!}
+        @endforeach
+    @endif
 @endsection

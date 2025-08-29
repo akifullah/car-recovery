@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\Script;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class ScriptController extends Controller
     public function index()
     {
         $scripts = Script::latest()->get();
-        return view('scripts', compact('scripts'));
+        $pages = Page::get();
+        return view('scripts', compact('scripts', "pages"));
     }
 
     public function create()
@@ -49,7 +51,9 @@ class ScriptController extends Controller
 
     public function edit(Script $script)
     {
-        return view('edit_script', compact('script'));
+        $pages = Page::get();
+
+        return view('edit_script', compact('script', "pages"));
     }
 
     public function update(Request $request, Script $script)

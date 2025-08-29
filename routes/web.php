@@ -26,6 +26,32 @@ Route::get('/{url?}', function (\Illuminate\Http\Request $request, $url = null) 
             abort(404);
         }
     }
+    // Retrieve scripts for this page (entire website or matching page)
+    // MariaDB does not support json_each, so we use LIKE for matching the page JSON string
+    // Retrieve scripts for this page (entire website or matching page, and optionally filter by position)
+    $scripts = \App\Models\Script::where(function ($query) use ($url) {
+        // Always include scripts for the entire website
+        $query->where('scope', 'entire_website');
+        if ($url) {
+            // Also include scripts for this specific page
+            $query->orWhere(function ($q) use ($url) {
+                $q->where('scope', 'single_page')
+                  ->where('page', 'like', '%"'.$url.'"%');
+            });
+        }
+    })->get();
+
+    // If you want to retrieve only scripts with scope "single_page" and position "head", you can do:
+    // Example: get all single_page scripts for this url that should go in the <head>
+    
+    // dd($headScripts);
+    // Yes, you can retrieve "body" position scripts for the current page like this:
+   
+
+    
+
+    
+    // Pass scripts to the view
 
     $mobile = $business?->phone_number;
 

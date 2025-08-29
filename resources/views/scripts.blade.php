@@ -54,11 +54,13 @@
                                 <label class="form-label">Select Pages (If not entire website)</label>
                                 <select name="page[]" multiple class="form-select">
                                     {{-- Example options, should be dynamic --}}
-                                    <option value="all" {{ collect(old('page'))->contains('all') ? 'selected' : '' }}>
-                                        Entire Website</option>
-                                    <option value="single"
-                                        {{ collect(old('page'))->contains('single') ? 'selected' : '' }}>Single Page
-                                    </option>
+
+                                    @foreach($pages as $page)
+                                        <option value="{{ $page->url }}" {{ collect(old('page'))->contains($page->id) ? 'selected' : '' }}>
+                                            {{ $page->location_name }} ({{ $page->url }})
+                                        </option>
+                                    @endforeach
+                                    
                                 </select>
                                 @error('page')
                                     <div class="text-danger small">{{ $message }}</div>

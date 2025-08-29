@@ -71,10 +71,11 @@
                                     }
                                 @endphp
                                 <select name="page[]" multiple class="form-select">
-                                    {{-- Example options, should be dynamic --}}
-                                    <option value="all" {{ collect($selectedPages)->contains('all') ? 'selected' : '' }}>
-                                        Entire Website</option>
-                                    <option value="single" {{ collect($selectedPages)->contains('single') ? 'selected' : '' }}>Single Page</option>
+                                    @foreach($pages as $page)
+                                        <option value="{{ $page->url }}" {{ collect($selectedPages)->contains($page->url) ? 'selected' : '' }}>
+                                            {{ $page->location_name }} ({{ $page->url }})
+                                        </option>
+                                    @endforeach
                                 </select>
                                 @error('page')
                                     <div class="text-danger small">{{ $message }}</div>
